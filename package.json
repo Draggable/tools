@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "workspaces": ["packages/*"],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Draggable/tools.git"
+  },
+  "engines": {
+    "node": ">=^8.6.0 <10.0",
+    "yarn": "^1.1.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 120,
+    "semi": false
+  },
+  "lint-staged": {
+    "*.js": ["prettier --config package.json --write", "git add"]
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "prepush": "npm test",
+    "test": "jest --projects packages/* --coverage",
+    "test:watch": "yarn test -- --watch --coverage false"
+  },
+  "devDependencies": {
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1",
+    "lerna": "^2.9.0"
+  }
+}

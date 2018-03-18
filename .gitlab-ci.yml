@@ -1,0 +1,18 @@
+image: node:8.6.0
+
+stages:
+  - test
+  - deploy
+
+test:
+  variables:
+    NODE_ENV: development
+    TZ: "Europe/London"
+  stage: test
+  script:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+    - yarn cache clean
+    - yarn install
+    - yarn run test
+  tags:
+    - docker
